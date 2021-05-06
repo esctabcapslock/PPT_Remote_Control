@@ -18,7 +18,6 @@ show.show_number_add=(x)=>{
     show.add_value(x)
 }
 
-
 // 요약기능....
 var book_list=[];
 fs.readdir('./slide',(err,file_list)=>{show_list = file_list;})
@@ -62,18 +61,12 @@ const server = http.createServer(function(req,res){
         res.end('Page Not Found');
     }
     
-    
     if(url=='/'){
-        
         res.writeHead(200, {'Content-Type':'text/html; charset=utf-8', 'Content-Location': '/main'});
         res.end('<meta http-equiv="refresh" content="0; url=/main" />');
     } 
     
-    else if (url=='/main'){
-        //show_number=0;
-      fs_readfile(res, 'asset/index.html', 'utf-8', 'text/html; charset=utf-8', ()=>{})  
-    } 
-    
+    else if (url=='/main')fs_readfile(res, 'asset/index.html', 'utf-8', 'text/html; charset=utf-8', ()=>{})  
     else if (url=='/get.js') fs_readfile(res, 'asset/get.js', 'utf-8', 'text/JavaScript; charset=utf-8', ()=>{})
     else if (url=='/control.js') fs_readfile(res, 'asset/control.js', 'utf-8', 'text/JavaScript; charset=utf-8', ()=>{})
     else if (url=='/s_socket_client.js') fs_readfile(res, 'asset/s_socket_client.js', 'utf-8', 'text/JavaScript; charset=utf-8', ()=>{})
@@ -84,7 +77,6 @@ const server = http.createServer(function(req,res){
             show_list = file_list;
             if(err) _404(res, url, "디렉토리가 비었음!");
             else{
-                //console.log(typeof(file_list), file_list, file_list.sort(), file_list)
                 res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'} );
                 res .end(file_list.sort().toString());
             }
@@ -95,7 +87,6 @@ const server = http.createServer(function(req,res){
             show_list = file_list;
             if(err) _404(res, url, "디렉토리가 비었음!");
             else{
-                //console.log(typeof(file_list), file_list, file_list.sort(), file_list)
                 res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'} );
                 res .end(file_list.sort().toString());
             }
@@ -117,9 +108,7 @@ const server = http.createServer(function(req,res){
         res .end(show_number.toString());
     }
     
-    else if (url=='/show'){
-        show.add_res(res);
-    }
+    else if (url=='/show') show.add_res(res);
     else if (url=='/show/add'){
         show.add_res(res);
         show.show_number_add(1)
@@ -128,16 +117,13 @@ const server = http.createServer(function(req,res){
         show.add_res(res);
         show.show_number_add(-1)
     }
-    else if (url=='/video'){
-        video.add_res(res);
-    }
+    else if (url=='/video') video.add_res(res);
     else if (url_arr[1]=='video' && ['play', 'pause', 'zero'].includes(url_arr[2])){
         video.add_res(res);
         video.change_value([url_arr[2], url_arr[2]=='play'?true:video.value[1], video.value[2]], ()=>{})
     }
     else if (url_arr[1]=='video' && url_arr[2]=='show'){
         video.add_res(res);
-        
         video.change_value([video.value[0], !video.value[1], video.value[2]], ()=>{})
     }
     else if (url_arr[1]=='video' && url_arr[2]=='set'){
