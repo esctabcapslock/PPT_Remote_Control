@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>발표</title>
     <script src="get.js"></script>
+    <script src="s_socket_client.js"></script>
     <script>
         window.onload = Slide.onload
     </script>
@@ -23,9 +24,18 @@
             width: 100%;
             height: 100%
         }
+        #video_show{
+            top:0;
+            left:0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <img id="slide_show" src="" alt="없음">
+    <video id="video_show" src="media/아파트.mp4" alt="">
 </body>
 </html>
