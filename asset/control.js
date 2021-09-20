@@ -45,6 +45,11 @@ Control={
         }).then((data)=>{
             Control.list = data.split(',');
             Control.show();
+             fetch('/show_now').then((data)=>{return data.text()}).then((data)=>{
+                Control.number = Number(data.split(',')[1])
+                Control.show();
+            })
+            Control.video_show();
             Control.socket = new S_Socket_Client('show', '../show', (data) => {
                 Control.number = Number(data.split(',')[1])
                 Control.show();
@@ -60,7 +65,12 @@ Control={
                 console.log('info',v);
                 Control.video_list_span.innerHTML+=`<li onclick="Control.set('${v}')">${v}</li>`
                 })
-            Control.show();
+            fetch('./video_now').then((data)=>{return data.text()}).then((data)=>{
+                Control.video_attribute = data.split(',')
+                Control.video_show();
+            })
+            Control.video_show();
+            
             Control.video_socket = new S_Socket_Client('video', '../video', (data) => {
                 Control.video_attribute = data.split(',')
                 Control.video_show();

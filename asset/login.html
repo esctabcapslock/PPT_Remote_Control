@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <script src="sha512.js"></script>
+    <script>
+    
+    function sb(){
+        console.log('sb')
+        document.getElementById('Pw').value = SHA512(SHA512(SHA512(document.getElementById('Pw').value)))
+        document.getElementById('login').submit()
+    }
+    </script>
+</head>
+<body>
+   <form id='login' method='post' action="/login/value" onsubmit='sb()'>
+   <input id='Pw' name='pw' type="password">
+   </form>
+   <button type='submit' onclick="sb()">안녕</button>
+</body>
+</html>

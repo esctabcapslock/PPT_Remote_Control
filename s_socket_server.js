@@ -9,7 +9,7 @@ class S_Socket_Server {
         this.name = name;
         this.value = value;
         this.res_list = [];
-        this.log('constructor '+name);
+        //this.log('constructor '+name);
         this.interval()
     }
     change_value(value, callback) {
@@ -30,11 +30,11 @@ class S_Socket_Server {
     }
 
     interval() {
-        this.log('interval')
+        //this.log('interval')
         this.flag = setInterval(() => {
             this.onchange(()=>{})
             //this.log('interval roop')
-        }, 4000);
+        }, 5000);
     }
 
     onchange(callback) {
